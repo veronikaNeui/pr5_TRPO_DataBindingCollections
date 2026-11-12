@@ -1,0 +1,65 @@
+﻿<Page x:Class="pr5_DataBinding_Collections.RoutePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:pr5_DataBinding_Collections"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RoutePage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <Button Margin="5" Padding="5" Click="AddButton_Click">Добавить</Button>
+            <Button Margin="5" Padding="5" Click="EditItem_Click">Редактировать</Button>
+            <Button Margin="5" Padding="5" Click="DeleteButton_Click">Удалить</Button>
+        </StackPanel>
+
+        <ListView Grid.Row="1"
+                  ItemsSource="{Binding Routes}"
+                  SelectedItem="{Binding SelectedRoute}"
+                  >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Идентификатор: "/>
+                                <TextBlock Text="{Binding Id}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Название: "/>
+                                <TextBlock Text="{Binding Name}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Начальная точка: "/>
+                                <TextBlock Text="{Binding StartPoint}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Конечная точка: "/>
+                                <TextBlock Text="{Binding EndPoint}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Общая длина, км: "/>
+                                <TextBlock Text="{Binding TotalDistanceKm}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" Background="AntiqueWhite">
+                <Label>Всего в списке:</Label>
+                <Label Content="{Binding Routes.Count}"/>
+            </StackPanel>
+        </Grid>
+</Page>
